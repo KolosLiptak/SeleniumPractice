@@ -2,6 +2,7 @@ package org.epam.page;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,6 +29,10 @@ public abstract class AbstractPage {
     }
 
     public void sendKeys(By locator, String keys){
+        find(locator).sendKeys(keys);
+    }
+
+    public void sendKeys(By locator, Keys keys){
         find(locator).sendKeys(keys);
     }
 

@@ -1,6 +1,7 @@
 package org.epam.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -10,24 +11,22 @@ public class GmailMainPage extends AbstractPage{
     }
 
     private final By searchBarLocator = By.id("aso_search_form_anchor");
-    WebElement searchBar = find(searchBarLocator);
-
-    private final By accountInfoButton = By.xpath("//a[@class=\"gb_B gb_Za gb_0\"]");
-
-    private final By closeMenuButton = By.xpath("//button[@aria-label=\"Close menu\"]");
+    private final By searchBarTextField = By.xpath("//input[@class=\"gb_pe aJh\"]");
 
     private final By labelsLabel = By.xpath("//span[@role=\"heading\"][@class=\"aAv\"]");
 
-    public void clickAccountInfo(){
-        click(accountInfoButton);
-        waitForElement(closeMenuButton);
-    }
-
-    public void clickCloseMenuButton(){
-        click(closeMenuButton);
-    }
+    private final By noMatchMessage = By.className("TC");
 
     public String getLabelsText(){
         return getText(labelsLabel);
+    }
+
+    public String searchMail(String text){
+        waitForElement(searchBarLocator);
+        this.click(searchBarLocator);
+        this.sendKeys(searchBarTextField, text);
+        this.sendKeys(searchBarTextField, Keys.RETURN);
+        waitForElement(noMatchMessage);
+        return getText(noMatchMessage);
     }
 }

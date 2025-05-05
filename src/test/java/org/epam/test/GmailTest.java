@@ -1,47 +1,48 @@
 package org.epam.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.epam.page.GmailMainPage;
 import org.epam.page.GmailSignInPage;
 import org.epam.util.Util;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class GmailSignInTest {
+public class GmailTest extends AbstractTest{
 
     private GmailSignInPage gmailSignInPage;
     private GmailMainPage gmailMainPage;
-    private WebDriver driver;
 
     @BeforeClass
     public void setUp(){
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
-        driver.manage().window().maximize();
+        super.setUp();
         driver.get(Util.MAIL_URL);
         gmailSignInPage = new GmailSignInPage(driver);
     }
 
-    @AfterClass
-    public void finish(){
-        driver.quit();
-    }
 
     @Test
-    public void signInTest(){
+    public void signInWithValidCredentials(){
 
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-        gmailMainPage = gmailSignInPage.login();
+        gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
 
         String expectedText = "Labels";
         Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
+
+    }
+
+    @Test(dependsOnMethods = {"signInWithValidCredentials"})
+    public void searchMail(){
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        String expectedText = "No messages matched your search. Try using search options such as sender, date, size and more.";
+
+        String actualText = gmailMainPage.searchMail(Util.INVALID_TEXT);
+        Assert.assertEquals(actualText,expectedText);
 
     }
 }

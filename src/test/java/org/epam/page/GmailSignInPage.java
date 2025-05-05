@@ -16,33 +16,27 @@ public class GmailSignInPage extends AbstractPage{
     }
 
     private final By emailFieldLocator = By.xpath("//input[@type=\"email\"]");
-    public WebElement emailField = find(emailFieldLocator);
-
     private final By nextButtonLocator =
             By.xpath("//span[text()='Next']");
-    WebElement nextButton = find(nextButtonLocator);
-
     private final By passwordFieldLocator = By.xpath("//input[@type=\"password\"]");
-    WebElement passwordField = find(passwordFieldLocator);
 
-
-    public void enterEmail(){
-        this.sendKeys(emailFieldLocator, Util.EMAIL);
+    public void enterEmail(String email){
+        this.sendKeys(emailFieldLocator, email);
         this.click(nextButtonLocator);
         waitForElement(passwordFieldLocator);
 
     }
 
-    public void enterPassword(){
+    public void enterPassword(String password){
 
-        this.sendKeys(passwordFieldLocator, Util.PASSWORD);
+        this.sendKeys(passwordFieldLocator, password);
         this.click(nextButtonLocator);
     }
 
 
-    public GmailMainPage login(){
-        enterEmail();
-        enterPassword();
+    public GmailMainPage login(String email, String password){
+        enterEmail(email);
+        enterPassword(password);
         return new GmailMainPage(driver);
     }
 
