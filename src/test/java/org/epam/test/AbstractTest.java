@@ -12,6 +12,8 @@ public class AbstractTest {
 
     protected WebDriver driver;
 
+
+
     @BeforeClass
     public void setUp(){
         WebDriverManager.edgedriver().setup();

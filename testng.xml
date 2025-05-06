@@ -5,6 +5,7 @@
     <test name="TestProject">
         <classes>
             <class name="org.epam.test.GmailTest" />
+            <class name="org.epam.test.LambdatestTest" />
 
         </classes>
     </test>
