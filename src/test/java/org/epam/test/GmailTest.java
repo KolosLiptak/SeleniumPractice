@@ -35,13 +35,13 @@ public class GmailTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"signInWithValidCredentials"})
-    public void searchMail(){
+    public void searchMailNoMatches(){
 
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         String expectedText = "No messages matched your search. Try using search options such as sender, date, size and more.";
 
-        String actualText = gmailMainPage.searchMail(Util.INVALID_TEXT);
+        String actualText = gmailMainPage.searchMailNoMatch(Util.INVALID_TEXT);
         Assert.assertEquals(actualText,expectedText);
 
     }

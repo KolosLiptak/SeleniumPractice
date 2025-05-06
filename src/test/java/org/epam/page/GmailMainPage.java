@@ -21,7 +21,7 @@ public class GmailMainPage extends AbstractPage{
         return getText(labelsLabel);
     }
 
-    public String searchMail(String text){
+    public String searchMailNoMatch(String text){
         waitForElement(searchBarLocator);
         this.click(searchBarLocator);
         this.sendKeys(searchBarTextField, text);
