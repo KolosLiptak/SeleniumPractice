@@ -18,14 +18,13 @@ public class GmailTest extends AbstractTest{
     public void setUp(){
         super.setUp();
         driver.get(Util.MAIL_URL);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         gmailSignInPage = new GmailSignInPage(driver);
     }
 
 
     @Test
     public void signInWithValidCredentials(){
-
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
 

@@ -6,12 +6,15 @@ import org.epam.page.LambdatestCheckBoxDemoPage;
 import org.epam.page.LambdatestKeyPressPage;
 import org.epam.page.LambdatestMainPage;
 import org.epam.util.Util;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -26,14 +29,14 @@ public class LambdatestTest extends AbstractTest{
     public void setUp(){
         super.setUp();
         driver.get(Util.LAMBDATEST_URL);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
         lambdatestMainPage = new LambdatestMainPage(driver);
 
     }
 
     @Test
     public void keyPressPageTest(){
-
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         lambdatestKeyPressPage = lambdatestMainPage.navigateToKeyPressPage();
 
