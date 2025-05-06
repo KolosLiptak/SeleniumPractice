@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
 
 public class GmailTest extends AbstractTest{
 
@@ -18,7 +17,6 @@ public class GmailTest extends AbstractTest{
     public void setUp(){
         super.setUp();
         driver.get(Util.MAIL_URL);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         gmailSignInPage = new GmailSignInPage(driver);
     }
 
@@ -27,7 +25,6 @@ public class GmailTest extends AbstractTest{
     public void signInWithValidCredentials(){
 
         gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
-
         String expectedText = "Labels";
         Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
 
@@ -36,10 +33,7 @@ public class GmailTest extends AbstractTest{
     @Test(dependsOnMethods = {"signInWithValidCredentials"})
     public void searchMailNoMatches(){
 
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
         String expectedText = "No messages matched your search. Try using search options such as sender, date, size and more.";
-
         String actualText = gmailMainPage.searchMailNoMatch(Util.INVALID_TEXT);
         Assert.assertEquals(actualText,expectedText);
 

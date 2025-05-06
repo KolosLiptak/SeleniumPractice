@@ -17,7 +17,6 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
 
     public String interactWithSingleCheckBox(){
         this.click(singleCheckBox);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         return this.getText(singleCheckBoxChecked);
     }
 

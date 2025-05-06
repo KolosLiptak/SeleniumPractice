@@ -3,7 +3,6 @@ package org.epam.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class GmailMainPage extends AbstractPage{
     public GmailMainPage(WebDriver driver) {
