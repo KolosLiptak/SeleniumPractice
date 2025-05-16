@@ -2,6 +2,7 @@ package org.epam.test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import org.epam.driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,15 +20,17 @@ public class AbstractTest {
 
     @BeforeClass
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//        driver.manage().window().maximize();
+
+        driver = DriverSingleton.getDriver();
 
     }
 
     @AfterClass
     public void finish(){
-        driver.quit();
+        DriverSingleton.closeDriver();
     }
 }
