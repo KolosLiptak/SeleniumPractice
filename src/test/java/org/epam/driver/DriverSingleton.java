@@ -38,6 +38,9 @@ public class DriverSingleton {
                 default : {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
+                    browser = "edge";
+                    logger.warn("Incorrect browser property, switched to Edge");
+
                 }
             }
             driver.manage().window().maximize();

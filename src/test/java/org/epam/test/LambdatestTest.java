@@ -1,14 +1,16 @@
 package org.epam.test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.epam.page.LambdatestCheckBoxDemoPage;
 import org.epam.page.LambdatestKeyPressPage;
 import org.epam.page.LambdatestMainPage;
 import org.epam.util.Util;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 
 public class LambdatestTest extends AbstractTest{
 
@@ -17,62 +19,30 @@ public class LambdatestTest extends AbstractTest{
     private LambdatestKeyPressPage lambdatestKeyPressPage;
     private LambdatestCheckBoxDemoPage lambdatestCheckBoxDemoPage;
 
+    private static final Logger logger = LogManager.getLogger(LambdatestTest.class);
+
+
+
     @BeforeClass
     public void setUp(){
         super.setUp();
         driver.get(Util.LAMBDATEST_URL);
 
         if(driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+            logger.warn("Cookies popup appeared");
             driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+            logger.warn("Cookies popup accepted");
         }
 
         lambdatestMainPage = new LambdatestMainPage(driver);
 
     }
 
-//    @Test
-//    public void keyPressPageTest(){
-//
-//        lambdatestKeyPressPage = lambdatestMainPage.navigateToKeyPressPage();
-//
-//        Assert.assertEquals(lambdatestKeyPressPage.getHeaderText(), "Key Press");
-//
-//        String resultOfInput = lambdatestKeyPressPage.enterTextToInputField(Util.INVALID_TEXT).toLowerCase();
-//
-//        String expectedResultOfInput = Util.INVALID_TEXT.toLowerCase();
-//
-//        Assert.assertEquals(resultOfInput.charAt(resultOfInput.length()-1),
-//                            expectedResultOfInput.charAt(expectedResultOfInput.length()-1));
-//
-//        driver.navigate().to(Util.LAMBDATEST_URL);
-//
-//        lambdatestCheckBoxDemoPage = lambdatestMainPage.navigateToCheckBoxDemoPage();
-//
-//        String expectedResultOfButton = lambdatestCheckBoxDemoPage.getButtonText();
-//
-//        Assert.assertEquals(expectedResultOfButton, "Check All");
-//
-//
-//
-//        lambdatestCheckBoxDemoPage.interactWithMultipleCheckBox();
-//
-//        expectedResultOfButton = lambdatestCheckBoxDemoPage.getButtonText();
-//
-//        Assert.assertEquals(expectedResultOfButton, "Uncheck All");
-//
-//        String singleCheckBoxChecked = lambdatestCheckBoxDemoPage.interactWithSingleCheckBox();
-//
-//        Assert.assertEquals(singleCheckBoxChecked, "Checked");
-//
-//        singleCheckBoxChecked = lambdatestCheckBoxDemoPage.interactWithSingleCheckBox();
-//
-//        Assert.assertEquals(singleCheckBoxChecked, "");
-//
-//    }
 
     @Test
     public void navigateToKeyPressPageTest(){
         lambdatestKeyPressPage = lambdatestMainPage.navigateToKeyPressPage();
+        logger.info("Navigated to Key Press page");
         Assert.assertEquals(lambdatestKeyPressPage.getHeaderText(), "Key Press");
     }
 
@@ -81,6 +51,7 @@ public class LambdatestTest extends AbstractTest{
 
         String expectedResultOfInput = Util.INVALID_TEXT.toLowerCase();
         lambdatestKeyPressPage.enterTextToInputField(Util.INVALID_TEXT);
+        logger.info("Entered text to Key Press page input field");
         String actualResultOfInput = lambdatestKeyPressPage.getResultFieldText().toLowerCase();
 
         Assert.assertEquals(actualResultOfInput.charAt(actualResultOfInput.length()-1),
@@ -91,32 +62,42 @@ public class LambdatestTest extends AbstractTest{
     @Test(dependsOnMethods = {"enterTextToKeyPressPageTest"})
     public void navigateToCheckBoxDemoPageTest(){
         driver.navigate().to(Util.LAMBDATEST_URL);
+        logger.info("Navigated to CheckBox Demo page");
 
         lambdatestCheckBoxDemoPage = lambdatestMainPage.navigateToCheckBoxDemoPage();
 
-        String expectedResultOfButton = lambdatestCheckBoxDemoPage.getSelectAllCheckBoxText();
+        String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
 
-        Assert.assertEquals(expectedResultOfButton, "");
+        Assert.assertEquals(expectedResult, "");
+
     }
 
     @Test(dependsOnMethods = {"navigateToCheckBoxDemoPageTest"})
     public void clickOnSingleCheckBoxTest(){
-        lambdatestCheckBoxDemoPage.clickSingleCheckBox();
+        clickSingleCheckBox();
         String expectedResult = lambdatestCheckBoxDemoPage.getSingleCheckBoxCheckedText();
         Assert.assertEquals(expectedResult, "Checked");
     }
 
     @Test(dependsOnMethods = {"clickOnSingleCheckBoxTest"})
     public void clickOffSingleCheckBoxTest(){
-        lambdatestCheckBoxDemoPage.clickSingleCheckBox();
+        clickSingleCheckBox();
         String expectedResult = lambdatestCheckBoxDemoPage.getSingleCheckBoxCheckedText();
         Assert.assertEquals(expectedResult, "");
+
+    }
+
+    private void clickSingleCheckBox() {
+        lambdatestCheckBoxDemoPage.clickSingleCheckBox();
+        logger.info("Clicked Single CheckBox");
     }
 
     @Test(dependsOnMethods = {"clickOffSingleCheckBoxTest"})
-    public void clickSelectAllCheckBoxTest(){
-        lambdatestCheckBoxDemoPage.clickSelectAllCheckBox();
-        String expectedResult = lambdatestCheckBoxDemoPage.getSelectAllCheckBoxText();
+    public void clickCheckAllCheckBoxTest(){
+        lambdatestCheckBoxDemoPage.clickCheckAllCheckBox();
+        logger.info("Clicked CheckAll CheckBox");
+        String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
         Assert.assertEquals(expectedResult, "");
+
     }
 }

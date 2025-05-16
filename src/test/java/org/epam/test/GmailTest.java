@@ -1,5 +1,8 @@
 package org.epam.test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.epam.model.User;
 import org.epam.page.GmailMainPage;
 import org.epam.page.GmailSignInPage;
 import org.epam.util.Util;
@@ -13,6 +16,11 @@ public class GmailTest extends AbstractTest{
     private GmailSignInPage gmailSignInPage;
     private GmailMainPage gmailMainPage;
 
+    private User testUser = new User(Util.EMAIL, Util.PASSWORD);
+
+    private static final Logger logger = LogManager.getLogger(GmailTest.class);
+
+
     @BeforeClass
     public void setUp(){
         super.setUp();
@@ -23,17 +31,32 @@ public class GmailTest extends AbstractTest{
 
     @Test
     public void signInWithValidCredentials(){
-//
-//        gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
-//        String expectedText = "Labels";
-//        Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
-
-        gmailSignInPage.enterEmail(Util.EMAIL);
-        gmailSignInPage.enterPassword(Util.PASSWORD);
-        String expectedText = "Labels";
-        gmailMainPage = new GmailMainPage(driver);
+        String expectedText = null;
+            enterEmailInfo(testUser.getEmail());
+            enterPasswordInfo(testUser.getPassword());
+            expectedText = "Labels";
+            gmailMainPage = new GmailMainPage(driver);
         Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
+    }
 
+    public void enterEmailInfo(String email){
+        try {
+            gmailSignInPage.enterEmail(email);
+            gmailSignInPage.clickNextButton();
+        } catch (Exception e) {
+            logger.error("Entering email failed: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void enterPasswordInfo(String password){
+        try {
+            gmailSignInPage.enterPassword(password);
+            gmailSignInPage.clickNextButton();
+        } catch (Exception e) {
+            logger.error("Entering password failed: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Test(dependsOnMethods = {"signInWithValidCredentials"})

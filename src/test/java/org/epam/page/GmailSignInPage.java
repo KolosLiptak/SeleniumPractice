@@ -1,5 +1,7 @@
 package org.epam.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GmailSignInPage extends AbstractPage{
 
-
+    private static final Logger logger = LogManager.getLogger(GmailSignInPage.class);
 
 //    private final By emailFieldLocator = By.xpath("//input[@type=\"email\"]");
 //    private final By nextButtonLocator =
@@ -31,31 +33,21 @@ public class GmailSignInPage extends AbstractPage{
     }
 
     public void enterEmail(String email){
+        logger.info("Entering email into email field");
         enterText(emailField, email);
-
-        click(nextButton);
-        waitForElement(passwordField);
+        //waitForElement(passwordField);
 
     }
 
     public void enterPassword(String password){
+        logger.info("Entering password into password field");
         enterText(passwordField, password);
+    }
+
+    public void clickNextButton(){
+        logger.info("Clicking Next button");
         click(nextButton);
     }
-//
-//
-//    public GmailMainPage login(String email, String password){
-//        enterEmail(email);
-//        enterPassword(password);
-//        return new GmailMainPage(driver);
-//    }
 
-//    private void enterText(WebElement element, String text){
-//        element.sendKeys(text);
-//    }
-//
-//    private void clickButton(WebElement element){
-//        element.click();
-//    }
 
 }

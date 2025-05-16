@@ -1,22 +1,23 @@
 package org.epam.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v133.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
 
 public class LambdatestCheckBoxDemoPage extends AbstractPage{
 
 
+    private static final Logger logger = LogManager.getLogger(LambdatestCheckBoxDemoPage.class);
+
 //    private final By singleCheckBox = By.id("isAgeSelected");
 //    private final By singleCheckBoxChecked = By.id("txtAge");
-//
 //    private final By multipleCheckBoxSelectAll = By.id("box");
-//
+
     @FindBy(id = "isAgeSelected")
     WebElement singleCheckBox;
 
@@ -33,18 +34,22 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
     }
 
     public void clickSingleCheckBox(){
+        logger.info("Clicking Single CheckBox");
         click(singleCheckBox);
     }
 
     public String getSingleCheckBoxCheckedText(){
+        logger.info("Retrieving Single CheckBox Text");
         return getText(singleCheckedCheckBox);
     }
 
-    public void clickSelectAllCheckBox(){
+    public void clickCheckAllCheckBox(){
+        logger.info("Clicking SelectAll CheckBox");
         click(multipleSelectAllCheckBox);
     }
 
-    public String getSelectAllCheckBoxText(){
+    public String getCheckAllCheckBoxText(){
+        logger.info("Retrieving SelectAll CheckBox Text");
         return getText(multipleSelectAllCheckBox);
     }
 

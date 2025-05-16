@@ -10,10 +10,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LambdatestMainPage extends AbstractPage{
-//
-//
+
 //    private final By keyPressLink = By.linkText("Key Press");
 //    private final By checkBoxDemoLink = By.linkText("Checkbox Demo");
+
+    private static final Logger logger = LogManager.getLogger(LambdatestMainPage.class);
+
 
     @FindBy(linkText = "Key Press")
     WebElement keyPressLink;
@@ -24,7 +26,6 @@ public class LambdatestMainPage extends AbstractPage{
     public LambdatestMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        logger = LogManager.getLogger(LambdatestMainPage.class);
     }
     public LambdatestKeyPressPage navigateToKeyPressPage(){
         click(keyPressLink);

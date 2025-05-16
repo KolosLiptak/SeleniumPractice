@@ -1,5 +1,7 @@
 package org.epam.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GmailMainPage extends AbstractPage{
 
+    private static final Logger logger = LogManager.getLogger(GmailMainPage.class);
 
-//
 //    private final By searchBarLocator = By.id("aso_search_form_anchor");
 //    private final By searchBarTextField = By.xpath("//input[@class=\"gb_pe aJh\"]");
 //
@@ -36,15 +38,19 @@ public class GmailMainPage extends AbstractPage{
     }
 
     public String getLabelsText(){
+        logger.info("Returning Text 'labels' to verify page");
         return labelsLabel.getText();
     }
 
     public String searchMailNoMatch(String text){
         waitForElement(emailSearchBar);
+        logger.info("Clicking into search bar");
         emailSearchBar.click();
+        logger.info("Entering sample text into search bar");
         emailSearchBarTextField.sendKeys(text);
         emailSearchBarTextField.sendKeys(Keys.RETURN);
         waitForElement(noMatchMessage);
+        logger.info("Retrieving result message");
         return noMatchMessage.getText();
     }
 }

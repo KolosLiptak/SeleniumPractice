@@ -10,8 +10,5 @@ public class Util {
 
     public static String LAMBDATEST_URL = "https://www.lambdatest.com/selenium-playground/";
 
-    public static void log(){
-
-    }
 
 }

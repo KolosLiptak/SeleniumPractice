@@ -7,10 +7,11 @@ import java.util.Properties;
 public class ConfigReader {
 
     private static Properties properties;
+    private static String config = "default";
 
     static {
         try {
-            FileInputStream fileInputStream = new FileInputStream("src/test/resources/browser.properties");
+            FileInputStream fileInputStream = new FileInputStream("src/test/resources/" + config + ".properties");
             properties = new Properties();
             properties.load(fileInputStream);
         } catch (IOException e) {
