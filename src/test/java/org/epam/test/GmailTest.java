@@ -23,9 +23,15 @@ public class GmailTest extends AbstractTest{
 
     @Test
     public void signInWithValidCredentials(){
+//
+//        gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
+//        String expectedText = "Labels";
+//        Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
 
-        gmailMainPage = gmailSignInPage.login(Util.EMAIL, Util.PASSWORD);
+        gmailSignInPage.enterEmail(Util.EMAIL);
+        gmailSignInPage.enterPassword(Util.PASSWORD);
         String expectedText = "Labels";
+        gmailMainPage = new GmailMainPage(driver);
         Assert.assertEquals(gmailMainPage.getLabelsText(), expectedText);
 
     }

@@ -26,25 +26,25 @@ public abstract class AbstractPage {
         return driver.findElement(locator);
     }
 
-    public void click(By locator){
-        find(locator).click();
+    protected void click(WebElement element){
+        element.click();
     }
 
-    public void sendKeys(By locator, String keys){
-        find(locator).sendKeys(keys);
+    protected void enterText(WebElement element, String keys){
+        element.sendKeys(keys);
     }
 
-    public void sendKeys(By locator, Keys keys){
-        find(locator).sendKeys(keys);
+//    public void enterText(WebElement element, Keys keys){
+//        element.sendKeys(keys);
+//    }
+
+    protected String getText(WebElement element){
+        return element.getText();
     }
 
-    public String getText(By locator){
-        return find(locator).getText();
-    }
-
-    public void waitForElement(By locator){
+    protected void waitForElement(WebElement element){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
 }
