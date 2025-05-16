@@ -35,11 +35,11 @@ public class GmailSignInPage extends AbstractPage{
     public void enterEmail(String email){
         logger.info("Entering email into email field");
         enterText(emailField, email);
-        //waitForElement(passwordField);
 
     }
 
     public void enterPassword(String password){
+        waitForElement(passwordField);
         logger.info("Entering password into password field");
         enterText(passwordField, password);
     }
