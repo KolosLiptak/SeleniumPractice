@@ -30,6 +30,7 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
     public LambdatestCheckBoxDemoPage(WebDriver driver) {
 
         super(driver);
+        driver.getCurrentUrl();
         PageFactory.initElements(driver, this);
     }
 

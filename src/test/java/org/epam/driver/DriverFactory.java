@@ -9,31 +9,37 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverFactory {
 
     private static final Logger logger = LogManager.getLogger(DriverFactory.class);
 
     public static WebDriver createDriver(){
 
+        WebDriver baseDriver;
         String browser = ConfigReader.getData("browser");
-        logger.info("Creating browser {}", browser);
+
         switch (browser){
             case "chrome" : {
                 WebDriverManager.chromedriver().setup();
-
-                return new ChromeDriver();
+                baseDriver = new ChromeDriver();
             }
             case "firefox" : {
                 WebDriverManager.firefoxdriver().setup();
-                return new FirefoxDriver();
+                baseDriver =  new FirefoxDriver();
             }
             default : {
                 WebDriverManager.edgedriver().setup();
-
                 browser = "edge";
                 logger.warn("Incorrect browser property, switched to Edge");
-                return new EdgeDriver();
+                baseDriver = new EdgeDriver();
             }
         }
+        baseDriver.manage().window().maximize();
+        baseDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        logger.info("Creating browser {}", browser);
+
+        return new LoggingWebDriver(baseDriver);
     }
 }

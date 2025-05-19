@@ -62,10 +62,10 @@ public class LambdatestTest extends AbstractTest{
     @Test(dependsOnMethods = {"enterTextToKeyPressPageTest"})
     public void navigateToCheckBoxDemoPageTest(){
         driver.navigate().to(Util.LAMBDATEST_URL);
-        logger.info("Navigated to CheckBox Demo page");
+
 
         lambdatestCheckBoxDemoPage = lambdatestMainPage.navigateToCheckBoxDemoPage();
-
+        logger.info("Navigated to CheckBox Demo page");
         String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
 
         Assert.assertEquals(expectedResult, "");
