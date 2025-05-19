@@ -23,29 +23,10 @@ public class DriverSingleton {
     public static WebDriver getDriver() {
         if (driver == null) {
 
-            String browser = ConfigReader.getData("browser");
-            logger.info("Starting browser {}", browser);
-
-            switch (browser){
-                case "chrome" : {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                }
-                case "firefox" : {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                }
-                default : {
-                    WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                    browser = "edge";
-                    logger.warn("Incorrect browser property, switched to Edge");
-
-                }
-            }
+            driver = DriverFactory.createDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            logger.info("Started browser {}", browser);
+
         }
 
         return driver;
