@@ -24,10 +24,12 @@ public class DriverFactory {
             case "chrome" : {
                 WebDriverManager.chromedriver().setup();
                 baseDriver = new ChromeDriver();
+                break;
             }
             case "firefox" : {
                 WebDriverManager.firefoxdriver().setup();
                 baseDriver =  new FirefoxDriver();
+                break;
             }
             default : {
                 WebDriverManager.edgedriver().setup();
