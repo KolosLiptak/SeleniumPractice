@@ -29,6 +29,7 @@ public class LambdatestKeyPressPage extends AbstractPage{
 
     public LambdatestKeyPressPage(WebDriver driver) {
         super(driver);
+        driver.getCurrentUrl();
         PageFactory.initElements(driver, this);
     }
 

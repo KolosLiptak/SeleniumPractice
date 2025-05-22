@@ -14,8 +14,6 @@ public class AbstractTest {
 
     protected WebDriver driver;
 
-
-
     @BeforeClass
     public void setUp(){
         driver = DriverSingleton.getDriver();

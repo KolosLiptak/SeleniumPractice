@@ -2,8 +2,6 @@ package org.epam.page;
 
 import org.apache.logging.log4j.Logger;
 import org.epam.util.TestListener;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,10 +20,6 @@ public abstract class AbstractPage {
         AbstractPage.driver = driver;
     }
 
-    protected WebElement find(By locator){
-        return driver.findElement(locator);
-    }
-
     protected void click(WebElement element){
         element.click();
     }
@@ -33,10 +27,6 @@ public abstract class AbstractPage {
     protected void enterText(WebElement element, String keys){
         element.sendKeys(keys);
     }
-
-//    public void enterText(WebElement element, Keys keys){
-//        element.sendKeys(keys);
-//    }
 
     protected String getText(WebElement element){
         return element.getText();
