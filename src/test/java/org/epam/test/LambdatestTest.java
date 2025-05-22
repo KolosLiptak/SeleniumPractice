@@ -35,7 +35,7 @@ public class LambdatestTest extends AbstractTest{
                 logger.warn("Cookies popup accepted");
             }
         } catch (Exception e) {
-            logger.warn("Cookies popup exception occurred{}", String.valueOf(e));
+            logger.error("Cookies popup exception occurred{}", String.valueOf(e));
         }
 
         lambdatestMainPage = new LambdatestMainPage(driver);
