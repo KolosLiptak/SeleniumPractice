@@ -28,10 +28,14 @@ public class LambdatestTest extends AbstractTest{
         super.setUp();
         driver.get(Util.LAMBDATEST_URL);
 
-        if(driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
-            logger.warn("Cookies popup appeared");
-            driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
-            logger.warn("Cookies popup accepted");
+        try {
+            if(driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).isDisplayed()) {
+                logger.warn("Cookies popup appeared");
+                driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+                logger.warn("Cookies popup accepted");
+            }
+        } catch (Exception e) {
+            logger.warn("Cookies popup exception occurred{}", String.valueOf(e));
         }
 
         lambdatestMainPage = new LambdatestMainPage(driver);

@@ -30,17 +30,19 @@ public class DriverSingleton {
                 case "chrome" : {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
                 }
                 case "firefox" : {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
                 }
                 default : {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     browser = "edge";
                     logger.warn("Incorrect browser property, switched to Edge");
-
+                    break;
                 }
             }
             driver.manage().window().maximize();
