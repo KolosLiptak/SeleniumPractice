@@ -21,26 +21,11 @@ public class TestListener implements ITestListener {
 
 
     private static final Logger logger = LogManager.getLogger(TestListener.class);
+    private final ScreenshotHelper screenshotHelper = new ScreenshotHelper();
 
     @Override
     public void onTestFailure(ITestResult result) {
-        File screenCapture = ((TakesScreenshot) DriverSingleton
-                .getDriver())
-                .getScreenshotAs(OutputType.FILE);
-
-        try {
-            FileUtils.copyFile(screenCapture, new File(
-                    "screenshots/" + getCurrentTimeAsString() + ".png"));
-            logger.warn("Screenshot of a failed test has been created");
-
-
-        } catch (IOException e) {
-            logger.error("Failed to create screenshot of a failed test");
-        }
+        screenshotHelper.takeScreenshot();
     }
 
-    private String getCurrentTimeAsString(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
-        return ZonedDateTime.now().format(formatter);
-    }
 }

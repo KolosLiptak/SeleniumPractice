@@ -3,14 +3,12 @@ package org.epam.driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jspecify.annotations.Nullable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.List;
 import java.util.Set;
 
-public class LoggingWebDriver implements WebDriver {
+public class LoggingWebDriver implements WebDriver, TakesScreenshot {
 
     private static final Logger logger = LogManager.getLogger(LoggingWebDriver.class);
     private final WebDriver driver;
@@ -83,5 +81,15 @@ public class LoggingWebDriver implements WebDriver {
     @Override
     public Options manage() {
         return driver.manage();
+    }
+
+    @Override
+    public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
+        if (driver instanceof TakesScreenshot) {
+            return ((TakesScreenshot) driver).getScreenshotAs(target);
+        } else {
+            logger.error("Underlying driver does not support creating a screenshot");
+            throw new UnsupportedOperationException("Underlying driver does not support screenshots");
+        }
     }
 }
