@@ -4,6 +4,7 @@
     <suite-files>
         <suite-file path="testng_smoke.xml"/>
         <suite-file path="testng_regression.xml"/>
+        <suite-file path="testng_api.xml" />
     </suite-files>
 
 </suite> <!-- Suite -->

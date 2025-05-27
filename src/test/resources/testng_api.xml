@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite Executing API Testing" parallel="methods" thread-count="4">
+    <test name="API Testing">
+        <classes>
+            <class name="org.epam.api.APITest"></class>
+        </classes>
+    </test>
+    <test name="CRUD Testing">
+        <classes>
+            <class name="org.epam.api.CRUDTest"></class>
+        </classes>
+    </test>
+
+</suite> <!-- Suite -->
