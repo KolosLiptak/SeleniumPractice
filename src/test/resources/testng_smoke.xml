@@ -4,13 +4,13 @@
 
     <test name="Smoke Test">
         <classes>
-            <class name="org.epam.test.GmailTest">
+            <class name="org.epam.ui.test.GmailTest">
                 <methods>
                      <include name="signInWithValidCredentials"/>
                 </methods>
             </class>
 
-            <class name="org.epam.test.LambdatestTest">
+            <class name="org.epam.ui.test.LambdatestTest">
                 <methods>
                     <include name="navigateToKeyPressPageTest"/>
                 </methods>

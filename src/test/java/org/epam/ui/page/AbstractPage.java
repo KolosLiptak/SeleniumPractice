@@ -1,15 +1,11 @@
-package org.epam.page;
+package org.epam.ui.page;
 
 import org.apache.logging.log4j.Logger;
-import org.epam.util.TestListener;
-import org.epam.util.WaitHelper;
+import org.epam.ui.util.TestListener;
+import org.epam.ui.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
-
-import java.time.Duration;
 
 @Listeners(TestListener.class)
 public abstract class AbstractPage {

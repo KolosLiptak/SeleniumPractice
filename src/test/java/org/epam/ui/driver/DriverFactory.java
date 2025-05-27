@@ -1,9 +1,9 @@
-package org.epam.driver;
+package org.epam.ui.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.epam.util.ConfigReader;
+import org.epam.ui.util.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -24,10 +24,12 @@ public class DriverFactory {
             case "chrome" : {
                 WebDriverManager.chromedriver().setup();
                 baseDriver = new ChromeDriver();
+                break;
             }
             case "firefox" : {
                 WebDriverManager.firefoxdriver().setup();
                 baseDriver =  new FirefoxDriver();
+                break;
             }
             default : {
                 WebDriverManager.edgedriver().setup();

@@ -1,11 +1,11 @@
-package org.epam.test;
+package org.epam.ui.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.epam.model.User;
-import org.epam.page.GmailMainPage;
-import org.epam.page.GmailSignInPage;
-import org.epam.util.Util;
+import org.epam.ui.model.User;
+import org.epam.ui.page.GmailMainPage;
+import org.epam.ui.page.GmailSignInPage;
+import org.epam.ui.util.Util;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

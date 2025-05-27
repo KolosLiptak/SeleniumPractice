@@ -1,4 +1,4 @@
-package org.epam.util;
+package org.epam.ui.util;
 
 public class Util {
 

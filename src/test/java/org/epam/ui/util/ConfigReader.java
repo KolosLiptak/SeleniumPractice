@@ -1,4 +1,4 @@
-package org.epam.util;
+package org.epam.ui.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

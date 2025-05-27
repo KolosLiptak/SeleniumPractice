@@ -1,12 +1,11 @@
-package org.epam.util;
+package org.epam.ui.util;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.epam.driver.DriverSingleton;
+import org.epam.ui.driver.DriverSingleton;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;

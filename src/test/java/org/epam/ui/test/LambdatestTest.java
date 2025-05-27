@@ -1,11 +1,11 @@
-package org.epam.test;
+package org.epam.ui.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.epam.page.LambdatestCheckBoxDemoPage;
-import org.epam.page.LambdatestKeyPressPage;
-import org.epam.page.LambdatestMainPage;
-import org.epam.util.Util;
+import org.epam.ui.page.LambdatestCheckBoxDemoPage;
+import org.epam.ui.page.LambdatestKeyPressPage;
+import org.epam.ui.page.LambdatestMainPage;
+import org.epam.ui.util.Util;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

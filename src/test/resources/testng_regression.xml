@@ -4,8 +4,8 @@
 
     <test name="Regression Test">
         <classes>
-            <class name="org.epam.test.GmailTest" />
-            <class name="org.epam.test.LambdatestTest" />
+            <class name="org.epam.ui.test.GmailTest" />
+            <class name="org.epam.ui.test.LambdatestTest" />
 
         </classes>
     </test>

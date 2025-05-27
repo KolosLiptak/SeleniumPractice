@@ -1,8 +1,8 @@
-package org.epam.test;
+package org.epam.ui.test;
 
 
-import org.epam.driver.DriverSingleton;
-import org.epam.util.TestListener;
+import org.epam.ui.driver.DriverSingleton;
+import org.epam.ui.util.TestListener;
 import org.openqa.selenium.WebDriver;
 
 import org.testng.annotations.AfterClass;

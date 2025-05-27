@@ -1,4 +1,4 @@
-package org.epam.model;
+package org.epam.ui.model;
 
 public class User {
 
