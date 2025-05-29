@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ConfigReader {
 
     private static Properties properties;
-    private static String config = "default";
+    private static String config = System.getProperty("env");
 
     static {
         try {
