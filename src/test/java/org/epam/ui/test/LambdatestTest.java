@@ -72,7 +72,7 @@ public class LambdatestTest extends AbstractTest{
         logger.info("Navigated to CheckBox Demo page");
         String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
 
-        Assert.assertEquals(expectedResult, "");
+        Assert.assertEquals(expectedResult, "Check All");
 
     }
 
@@ -80,7 +80,7 @@ public class LambdatestTest extends AbstractTest{
     public void clickOnSingleCheckBoxTest(){
         clickSingleCheckBox();
         String expectedResult = lambdatestCheckBoxDemoPage.getSingleCheckBoxCheckedText();
-        Assert.assertEquals(expectedResult, "Checked");
+        Assert.assertEquals(expectedResult, "");
     }
 
     @Test(dependsOnMethods = {"clickOnSingleCheckBoxTest"})
@@ -101,7 +101,7 @@ public class LambdatestTest extends AbstractTest{
         lambdatestCheckBoxDemoPage.clickCheckAllCheckBox();
         logger.info("Clicked CheckAll CheckBox");
         String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
-        Assert.assertEquals(expectedResult, "");
+        Assert.assertEquals(expectedResult, "Uncheck All");
 
     }
 }

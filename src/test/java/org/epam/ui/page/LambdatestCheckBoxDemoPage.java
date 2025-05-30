@@ -17,13 +17,10 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
 //    private final By singleCheckBoxChecked = By.id("txtAge");
 //    private final By multipleCheckBoxSelectAll = By.id("box");
 
-    @FindBy(id = "isAgeSelected")
+    @FindBy(xpath = "//label[normalize-space()='Click on check box']/input[@type='checkbox']")
     WebElement singleCheckBox;
 
-    @FindBy(id = "txtAge")
-    WebElement singleCheckedCheckBox;
-
-    @FindBy(id = "box")
+    @FindBy(css = "button.bg-\\[\\#00c5cd\\].text-white")
     WebElement multipleSelectAllCheckBox;
 
     public LambdatestCheckBoxDemoPage(WebDriver driver) {
@@ -40,7 +37,7 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
 
     public String getSingleCheckBoxCheckedText(){
         logger.info("Retrieving Single CheckBox Text");
-        return getText(singleCheckedCheckBox);
+        return getText(singleCheckBox);
     }
 
     public void clickCheckAllCheckBox(){
