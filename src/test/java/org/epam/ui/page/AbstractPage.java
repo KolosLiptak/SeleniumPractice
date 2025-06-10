@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.testng.AllureTestNg;
 import org.apache.logging.log4j.Logger;
 import org.epam.ui.util.TestListener;
 import org.epam.ui.util.WaitHelper;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Listeners;
 
-@Listeners(TestListener.class)
+
 public abstract class AbstractPage {
 
     protected WebDriver driver;

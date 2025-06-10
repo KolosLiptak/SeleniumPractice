@@ -6,5 +6,8 @@
         <suite-file path="testng_regression.xml"/>
         <suite-file path="testng_api.xml" />
     </suite-files>
-
+    <listeners>
+        <listener class-name="org.epam.ui.util.TestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"></listener>
+    </listeners>
 </suite> <!-- Suite -->

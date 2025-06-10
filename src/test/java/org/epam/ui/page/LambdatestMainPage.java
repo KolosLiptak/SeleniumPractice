@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -25,12 +26,15 @@ public class LambdatestMainPage extends AbstractPage{
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    @Step
     public LambdatestKeyPressPage navigateToKeyPressPage(){
         click(keyPressLink);
         logger.info("Navigating to Key Press page");
         return new LambdatestKeyPressPage(driver);
     }
 
+    @Step
     public LambdatestCheckBoxDemoPage navigateToCheckBoxDemoPage(){
         click(checkBoxDemoLink);
         logger.info("Navigating to CheckBox Demo page");

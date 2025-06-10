@@ -1,13 +1,17 @@
 package org.epam.ui.test;
 
+import io.qameta.allure.*;
+import io.qameta.allure.testng.AllureTestNg;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.epam.ui.model.User;
 import org.epam.ui.page.GmailMainPage;
 import org.epam.ui.page.GmailSignInPage;
+import org.epam.ui.util.TestListener;
 import org.epam.ui.util.Util;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 
@@ -30,6 +34,8 @@ public class GmailTest extends AbstractTest{
 
 
     @Test
+    @Story("Login with valid credentials")
+    @Severity(SeverityLevel.CRITICAL)
     public void signInWithValidCredentials(){
         String expectedText = null;
             enterEmailInfo(testUser.getEmail());
@@ -60,6 +66,8 @@ public class GmailTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"signInWithValidCredentials"})
+    @Story("Using the search bar")
+    @Severity(SeverityLevel.NORMAL)
     public void searchMailNoMatches(){
 
         String expectedText = "No messages matched your search. Try using search options such as sender, date, size and more.";

@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class LambdatestKeyPressPage extends AbstractPage{
         PageFactory.initElements(driver, this);
     }
 
-
+    @Step
     public void enterTextToInputField(String text){
         logger.info("Entering text to input field");
         enterText(inputField, text);
@@ -40,12 +41,13 @@ public class LambdatestKeyPressPage extends AbstractPage{
 
     }
 
+    @Step
     public String getResultFieldText(){
         logger.info("Retrieving text from result field");
         return getText(resultField);
     }
 
-
+    @Step
     public String getHeaderText(){
         logger.info("Retrieving text from header");
         return getText(header);

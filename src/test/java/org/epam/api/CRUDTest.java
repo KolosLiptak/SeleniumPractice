@@ -1,11 +1,15 @@
 package org.epam.api;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+
 
 public class CRUDTest {
 
@@ -38,6 +42,7 @@ public class CRUDTest {
                 """;
 
     @Test
+    @Step
     public void createOperationTest(){
 
         given()
@@ -52,6 +57,7 @@ public class CRUDTest {
     }
 
     @Test(dependsOnMethods = {"createOperationTest"})
+    @Step
     public void updateOperationTest(){
 
         given()
@@ -65,6 +71,7 @@ public class CRUDTest {
     }
 
     @Test(dependsOnMethods = "updateOperationTest")
+    @Step
     public void deleteOperationTest(){
         given()
                 .when()

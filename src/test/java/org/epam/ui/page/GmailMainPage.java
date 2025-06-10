@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -36,11 +37,13 @@ public class GmailMainPage extends AbstractPage{
         PageFactory.initElements(driver,this);
     }
 
+    @Step
     public String getLabelsText(){
         logger.info("Returning Text 'labels' to verify page");
         return labelsLabel.getText();
     }
 
+    @Step
     public String searchMailNoMatch(String text){
         waitForElement(emailSearchBar);
         logger.info("Clicking into search bar");

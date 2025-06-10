@@ -1,12 +1,16 @@
 package org.epam.api;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+
 
 public class APITest {
 
@@ -15,6 +19,7 @@ public class APITest {
 
 
     @Test
+    @Step
     public void verifyStatusCodeTest(){
         given()
                 .when()
@@ -27,6 +32,7 @@ public class APITest {
     }
 
     @Test
+    @Step
     public void verifyResponseHeaderTest(){
 
         String expectedHeader = "application/json; charset=utf-8";
@@ -43,6 +49,7 @@ public class APITest {
     }
 
     @Test
+    @Step
     public void verifyResponseBodyTest(){
         given()
                 .when()

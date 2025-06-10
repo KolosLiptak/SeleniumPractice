@@ -1,14 +1,18 @@
 package org.epam.ui.test;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.epam.ui.page.LambdatestCheckBoxDemoPage;
 import org.epam.ui.page.LambdatestKeyPressPage;
 import org.epam.ui.page.LambdatestMainPage;
+import org.epam.ui.util.TestListener;
 import org.epam.ui.util.Util;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 
@@ -44,6 +48,7 @@ public class LambdatestTest extends AbstractTest{
 
 
     @Test
+    @Step
     public void navigateToKeyPressPageTest(){
         lambdatestKeyPressPage = lambdatestMainPage.navigateToKeyPressPage();
         logger.info("Navigated to Key Press page");
@@ -51,6 +56,7 @@ public class LambdatestTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"navigateToKeyPressPageTest"})
+    @Step
     public void enterTextToKeyPressPageTest(){
 
         String expectedResultOfInput = Util.INVALID_TEXT.toLowerCase();
@@ -64,6 +70,7 @@ public class LambdatestTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"enterTextToKeyPressPageTest"})
+    @Step
     public void navigateToCheckBoxDemoPageTest(){
         driver.navigate().to(Util.LAMBDATEST_URL);
 
@@ -77,6 +84,7 @@ public class LambdatestTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"navigateToCheckBoxDemoPageTest"})
+    @Step
     public void clickOnSingleCheckBoxTest(){
         clickSingleCheckBox();
         String expectedResult = lambdatestCheckBoxDemoPage.getSingleCheckBoxCheckedText();
@@ -84,6 +92,7 @@ public class LambdatestTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"clickOnSingleCheckBoxTest"})
+    @Step
     public void clickOffSingleCheckBoxTest(){
         clickSingleCheckBox();
         String expectedResult = lambdatestCheckBoxDemoPage.getSingleCheckBoxCheckedText();
@@ -97,11 +106,12 @@ public class LambdatestTest extends AbstractTest{
     }
 
     @Test(dependsOnMethods = {"clickOffSingleCheckBoxTest"})
+    @Step
     public void clickCheckAllCheckBoxTest(){
         lambdatestCheckBoxDemoPage.clickCheckAllCheckBox();
         logger.info("Clicked CheckAll CheckBox");
         String expectedResult = lambdatestCheckBoxDemoPage.getCheckAllCheckBoxText();
-        Assert.assertEquals(expectedResult, "Uncheck All");
+        Assert.assertEquals(expectedResult, "Uncheck All" + Util.INVALID_TEXT);
 
     }
 }

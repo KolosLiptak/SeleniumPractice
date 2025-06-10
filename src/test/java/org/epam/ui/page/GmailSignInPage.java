@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -31,18 +32,21 @@ public class GmailSignInPage extends AbstractPage{
         PageFactory.initElements(driver, this);
     }
 
+    @Step
     public void enterEmail(String email){
         logger.info("Entering email into email field");
         enterText(emailField, email);
 
     }
 
+    @Step
     public void enterPassword(String password){
         waitForElement(passwordField);
         logger.info("Entering password into password field");
         enterText(passwordField, password);
     }
 
+    @Step
     public void clickNextButton(){
         logger.info("Clicking Next button");
         click(nextButton);

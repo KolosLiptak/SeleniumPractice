@@ -1,5 +1,6 @@
 package org.epam.ui.page;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -30,21 +31,25 @@ public class LambdatestCheckBoxDemoPage extends AbstractPage{
         PageFactory.initElements(driver, this);
     }
 
+    @Step
     public void clickSingleCheckBox(){
         logger.info("Clicking Single CheckBox");
         click(singleCheckBox);
     }
 
+    @Step
     public String getSingleCheckBoxCheckedText(){
         logger.info("Retrieving Single CheckBox Text");
         return getText(singleCheckBox);
     }
 
+    @Step
     public void clickCheckAllCheckBox(){
         logger.info("Clicking SelectAll CheckBox");
         click(multipleSelectAllCheckBox);
     }
 
+    @Step
     public String getCheckAllCheckBoxText(){
         logger.info("Retrieving SelectAll CheckBox Text");
         return getText(multipleSelectAllCheckBox);
