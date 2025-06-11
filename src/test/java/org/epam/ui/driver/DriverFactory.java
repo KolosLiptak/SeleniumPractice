@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.epam.ui.util.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -23,7 +24,9 @@ public class DriverFactory {
         switch (browser){
             case "chrome" : {
                 WebDriverManager.chromedriver().setup();
-                baseDriver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--incognito");
+                baseDriver = new ChromeDriver(chromeOptions);
                 break;
             }
             case "firefox" : {

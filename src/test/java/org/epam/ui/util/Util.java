@@ -9,6 +9,7 @@ public class Util {
     public static String INVALID_TEXT = "jhrg66hzfbhjfvgzu43w64e3w8i6tgf84632rgt";
 
     public static String LAMBDATEST_URL = "https://www.lambdatest.com/selenium-playground/";
+    public static String SWAGLABS_URL = "https://www.saucedemo.com/";
 
 
 }
