@@ -16,7 +16,7 @@ public class SwagLabsLoginPage extends AbstractPage{
     WebElement passwordTextBox;
     @FindBy(id = "login-button")
     WebElement loginButton;
-
+    @FindBy(css = "[data-test='error']")
     WebElement errorMessage;
 
     private static final Logger logger = LogManager.getLogger(SwagLabsLoginPage.class);
@@ -43,8 +43,6 @@ public class SwagLabsLoginPage extends AbstractPage{
     }
 
     public String getErrorMessage() throws InterruptedException {
-        errorMessage = driver.findElement
-                (By.xpath("//h3"));
         return errorMessage.getText();
     }
 }

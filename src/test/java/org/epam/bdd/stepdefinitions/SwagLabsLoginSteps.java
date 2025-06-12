@@ -1,29 +1,26 @@
 package org.epam.bdd.stepdefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.epam.ui.driver.DriverSingleton;
+import org.epam.bdd.stepdefinitions.hooks.SwagLabsLoginHooks;
 import org.epam.ui.page.SwagLabsLoginPage;
-import org.epam.ui.test.AbstractTest;
+
 import org.epam.ui.util.Util;
-
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 
-public class SwagLabsLoginSteps extends AbstractTest {
+
+public class SwagLabsLoginSteps {
 
     private static final Logger logger = LogManager.getLogger(SwagLabsLoginSteps.class);
     SwagLabsLoginPage swagLabsLoginPage;
-
+    private final WebDriver driver = SwagLabsLoginHooks.driver;
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page(){
-        super.setUp();
         driver.get(Util.SWAGLABS_URL);
         swagLabsLoginPage = new SwagLabsLoginPage(driver);
         logger.info("Navigated to SwagLabs login page");
@@ -49,10 +46,5 @@ public class SwagLabsLoginSteps extends AbstractTest {
         Assert.assertEquals(actualErrorMessage,
                 "Epic sadface: Username and password do not match any user in this service");
         logger.info("Error message received successfully");
-    }
-
-    @AfterAll
-    public static void before_or_after_all(){
-        DriverSingleton.closeDriver();
     }
 }
