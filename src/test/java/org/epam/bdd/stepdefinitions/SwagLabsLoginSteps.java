@@ -17,7 +17,8 @@ public class SwagLabsLoginSteps {
 
     private static final Logger logger = LogManager.getLogger(SwagLabsLoginSteps.class);
     SwagLabsLoginPage swagLabsLoginPage;
-    private final WebDriver driver = SwagLabsLoginHooks.driver;
+    SwagLabsLoginHooks swagLabsLoginHooks = new SwagLabsLoginHooks();
+    private final WebDriver driver = swagLabsLoginHooks.getDriver();
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page(){

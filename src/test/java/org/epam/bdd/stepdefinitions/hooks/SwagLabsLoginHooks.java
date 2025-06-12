@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SwagLabsLoginHooks {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
 
     @Before
     public void setUp(){
@@ -17,5 +17,9 @@ public class SwagLabsLoginHooks {
     @After
     public void close(){
         DriverSingleton.closeDriver();
+    }
+
+    public WebDriver getDriver(){
+        return driver;
     }
 }
